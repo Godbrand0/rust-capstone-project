@@ -128,7 +128,9 @@ fn main() -> bitcoincore_rpc::Result<()> {
     // Calculating it as (input - outputs) can introduce floating-point rounding errors
     // that would cause the test's strict equality check to fail.
     let wallet_tx = miner_rpc.get_transaction(&txid, None)?;
-    let fee = wallet_tx.fee.expect("fee not present in wallet transaction");
+    let fee = wallet_tx
+        .fee
+        .expect("fee not present in wallet transaction");
 
     // Write all required details to out.txt at the project root (one value per line).
     // Amounts are formatted to 8 decimal places (satoshi precision) to match Bitcoin
